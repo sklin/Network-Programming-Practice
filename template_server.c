@@ -92,7 +92,8 @@ int main()
 
     //send
     fprintf(stdout, "Sending...\n");
-    int send_len = send( client_fd, buffer, strlen(buffer), 0 );
+    int send_len = send( client_fd, buffer, recv_len, 0 );
+    //int send_len = send( client_fd, buffer, strlen(buffer), 0 );
     if(send_len == -1){
         fprintf(stderr, "Send failed.\n");
         exit(-1);
