@@ -7,3 +7,9 @@ echo:
 daytime:
 	gcc daytime_server.c -o server
 	gcc daytime_client.c -o client
+fork:
+	gcc fork_echo_server.c -o server
+	gcc fork_echo_client.c -o client
+clean:
+	rm -f server
+	rm -f client
