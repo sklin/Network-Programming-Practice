@@ -10,6 +10,9 @@ daytime:
 fork:
 	gcc fork_echo_server.c -o server
 	gcc fork_echo_client.c -o client
+simple:
+	gcc simple_server.c -o server
+	gcc simple_client.c -o client
 clean:
 	rm -f server
 	rm -f client
