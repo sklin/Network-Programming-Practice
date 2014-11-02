@@ -13,6 +13,9 @@ fork:
 simple:
 	gcc simple_server.c -o server
 	gcc simple_client.c -o client
+select:
+	gcc select_server.c -o server
+	gcc select_client.c -o client
 clean:
 	rm -f server
 	rm -f client
