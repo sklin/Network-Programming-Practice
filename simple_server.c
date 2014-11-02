@@ -53,6 +53,7 @@ int main(int argc, char* argv[])
 
     while(1){
         // Accept
+        client_addr_len = sizeof(client_addr);
         client_fd = accept( server_fd, (struct sockaddr*)&server_addr, (socklen_t*)&client_addr_len);
         if(client_fd == -1){
             fprintf( stderr, "Accept fail.\n");
@@ -60,10 +61,8 @@ int main(int argc, char* argv[])
         }
 
         while(1){
-
-            memset(buffer, 0, sizeof(buffer));
-
             // Receive
+            memset(buffer, 0, sizeof(buffer));
             int recv_len = recv( client_fd, buffer, BUF_LEN-1, 0);
             //if(recv_len == -1){
             if(recv_len <= 0){
@@ -86,6 +85,7 @@ int main(int argc, char* argv[])
                 printf("Send: '%s'\n", buffer);
                 printf("Size: %d\n", send_len);
             }
+            memset(buffer, 0, sizeof(buffer));
         }
 
         // Close

@@ -65,6 +65,7 @@ int main()
     fprintf(stdout, "Finished!\n");
 
     // accept
+    client_addr_len = sizeof(client_addr);
     fprintf(stdout, "Accepting...\n");
     client_fd = accept( server_fd, (struct sockaddr*)&client_addr, (socklen_t*)&client_addr_len);   // success: nonnegative, fail: -1
     if( client_fd == -1 ){
@@ -77,6 +78,7 @@ int main()
     fprintf(stdout, "Finished!\n");
 
     // recv
+    memset(buffer, 0, sizeof(buffer));
     fprintf(stdout, "Receiving...\n");
     int recv_len = recv( client_fd, buffer, BUF_LEN-1, 0 );
     if(recv_len == -1){
@@ -104,6 +106,7 @@ int main()
         fprintf(stdout, "Send words : %d.\n", send_len);
     }
     fprintf(stdout, "Finished!\n");
+    memset(buffer, 0, sizeof(buffer));
 
     // close
     fprintf(stdout, "Closing...\n");

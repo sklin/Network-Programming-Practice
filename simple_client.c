@@ -20,6 +20,9 @@ int main(int argc, char* argv[])
         scanf("%s", ip);
         printf("Enter port : ");
         scanf("%d", &port);
+
+        char c; // tmp
+        while( (c=getchar()) != '\n' && c != EOF ); // flush stdin
     }
 
     // Declare
@@ -49,11 +52,14 @@ int main(int argc, char* argv[])
     while(1){
         // Input
         // char c; // tmp
-        // while( (c=getchar()) != '\n' && c != EOF ); // flush stdin
+        //while( (c=getchar()) != '\n' && c != EOF ); // flush stdin
+        memset(buffer, 0, sizeof(buffer));
         printf(">> ");
         fgets(buffer, sizeof(buffer), stdin);
         if(buffer[strlen(buffer)-1] == '\n')
             buffer[strlen(buffer)-1] = '\0';
+        if(strlen(buffer) == 0)
+            continue;
 
         // Send
         int send_len = send( server_fd, buffer, strlen(buffer), 0);
@@ -65,10 +71,10 @@ int main(int argc, char* argv[])
             printf("Send: '%s'\n", buffer);
             printf("Size: %d\n", send_len);
         }
-
         memset(buffer, 0, sizeof(buffer));
 
         // Receive
+        memset(buffer, 0, sizeof(buffer));
         int recv_len = recv( server_fd, buffer, BUF_LEN-1, 0);
         if(recv_len == -1){
             fprintf( stderr, "Receive fail.\n");
@@ -79,7 +85,6 @@ int main(int argc, char* argv[])
             printf("Size: %d\n", recv_len);
         }
 
-        memset(buffer, 0, sizeof(buffer));
     }
 
     // Close

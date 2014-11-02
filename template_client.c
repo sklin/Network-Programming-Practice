@@ -55,6 +55,7 @@ int main()
     fprintf(stdout, "Finished!\n");
 
     // input message
+    memset(buffer, 0, sizeof(buffer));
     fprintf(stdout, ">>>");
     char c;
     while ( (c = getchar()) != '\n' && c != EOF );
@@ -78,8 +79,10 @@ int main()
         fprintf(stdout, "Send words : %d.\n", send_len);
     }
     fprintf(stdout, "Finished!\n");
+    memset(buffer, 0, sizeof(buffer));
 
     // recv
+    memset(buffer, 0, sizeof(buffer));
     fprintf(stdout, "Receiving...\n");
     int recv_len = recv( server_fd, buffer, BUF_LEN-1, 0 );
     if(recv_len == -1){
